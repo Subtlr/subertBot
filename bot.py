@@ -9,6 +9,8 @@ load_dotenv()
 intents = dc.Intents.default() # Basically the config for the bot.
 intents.message_content = True # This makes the bot be able to read messages.
 
+commands = ["$help", "$slot", "$jwordz", "$hello", "$wiki"]
+
 class MyClient(dc.Client):
     async def on_ready(self): # When the bot loads up.
         print(f'Logged on as {self.user}!')
@@ -22,6 +24,9 @@ class MyClient(dc.Client):
 
         if message.content.startswith("$jwordz"):
             await message.channel.send("JWORDZ SUCKS AT BLUE LOCK RIVALS") # this bot is right
+
+        if message.content.startswith("$help"):
+            await message.channel.send(f"This bot has a few functionalities, such as {commands}")
     
         if message.content.startswith("$stop"):
             await message.channel.send("Bot is shutting down...")
